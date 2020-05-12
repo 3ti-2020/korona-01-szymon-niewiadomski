@@ -1,3 +1,75 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 10px;
+}
+
 body {
-color: darkgrey;
+    background: orange;
+    font-size: 1.6rem;
+    width: 100vw;
+    min-height: 100vh;
+}
+.author{
+    width: 100%;
+    padding: .5rem;
+    background: black;
+    color: white;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.4rem;
+}
+
+header{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: orangered;
+}
+.logo{
+    font-size: 5rem;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding: 2rem;
+}
+.navbar{
+    width: 100%;
+    background: red;
+    display: flex;
+    justify-content: center;
+}
+.navbar > ol{
+    display: flex;
+    list-style-type: none;
+    
+}
+.nav--item{
+    padding: 1rem;
+}
+.nav--link{
+    text-decoration: none;
+    color:white;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.products{
+    width: 800px;
+    min-height: 500px;
+    border: 1px solid black;
+    padding: 1rem;
+}
+
+footer{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
 }
