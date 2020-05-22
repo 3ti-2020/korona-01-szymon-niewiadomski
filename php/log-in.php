@@ -14,6 +14,8 @@ if(isset($_POST['password'])){
         if(password_verify($password, $data['password'])){
             $_SESSION['logged'] = true;
             $_SESSION['address'] = $data['address'];
+            $_SESSION['city'] = $data['city'];
+            $_SESSION['post_code'] = $data['post_code'];
             $_SESSION['email'] = $data['email'];
             $_SESSION['name'] = $data['name'];
             $_SESSION['lastname'] = $data['lastname'];

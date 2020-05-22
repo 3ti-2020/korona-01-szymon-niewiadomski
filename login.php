@@ -8,6 +8,12 @@
   }
   if(isLogged()) header('Location: index.php');
 
+  function checkError($error, $echo){
+    if(isset($_SESSION[$error])){
+      echo $echo;
+      unset($_SESSION[$error]);
+    }
+  }
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +28,10 @@
   <body>
     <h1 class="author">Szymon Niewiadomski Przykładowe konto: login - guest, hasło - guest</h1>
     <header>
+      <div class="logo">
+        <span>GYM</span>
+        <span>SHOP</span>
+      </div>
       <nav class="navbar">
         <ol>
           <li class="nav--item"><a href="index.php" class="nav--link">Wszystko</a></li>
@@ -29,34 +39,28 @@
           <li class="nav--item"><a href="index.php?category=machines" class="nav--link">Maszyny</a></li>
           <li class="nav--item"><a href="index.php?category=accessories" class="nav--link">Akcesoria</a></li>
           <li class="nav--item"><a href="index.php?category=clothes" class="nav--link">Odzież</a></li>
-          <?php
-            if(isLogged()){
-              echo '<li class="nav--item"><a href="cart.php" class="nav--link">Koszyk</a></li>';
-              echo '<li class="nav--item"><a href="php/logout.php" class="nav--link">Wyloguj</a></li>';
-            } else {
-              echo '<li class="nav--item"><a href="login.php" class="nav--link">Logowanie</a></li>';
-            }
-          ?>
+          <li class="nav--item"><a href="login.php" class="nav--link">Logowanie</a></li>
+
         </ol>
       </nav>
     </header>
     <main>
       <section class="login">
+        <?php
+          if(isset($_SESSION['registered'])){
+            echo '<div class="register--welcome">
+              Witaj <span class="register--name">'.$_SESSION['registered'].'!</span> <br>
+              Możesz się od razu zalogować.
+            </div>';
+            unset($_SESSION['registered']);
+          }
+        ?>
         <h1>Logowanie</h1>
             <form method="post" action="php/log-in.php" class="login--form">
-              <input type="text" name="username" class="login--input <?php 
-                if(isset($_SESSION['error_username'])){
-                  echo 'error';
-                  unset($_SESSION['error_username']);
-                }
-              ?>" placeholder="Nazwa użytkownika">
-              <input type="password" name="password" class="login--input <?php
-                if(isset($_SESSION['error_password'])){
-                  echo 'error';
-                  unset($_SESSION['error_password']);
-                }
-              ?> " placeholder="Hasło">
+              <input type="text" name="username" class="login--input <?php checkError('error_username', 'error')?>" placeholder="Nazwa użytkownika">
+              <input type="password" name="password" class="login--input <?php checkError('error_password', 'error')?>" placeholder="Hasło">
               <input type="submit" class="login--button" value="Zaloguj się">
+              <a href="registration.php" class="register--link">Zarejestruj się</a>
             </form>
       </section>
     </main>
